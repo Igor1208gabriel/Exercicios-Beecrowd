@@ -1,0 +1,26 @@
+#include <bits/stdc++.h> 
+using namespace std;
+ 
+void torre(int n, char de, char para, char auxiliar){
+    if (n == 0){
+    return;
+    }
+ 
+    torre(n-1, de, auxiliar, para);
+    cout << de << " " << para << "\n";
+    torre(n-1, auxiliar, para, de);
+}
+ 
+int main(){
+    int n;
+    cin >> n;
+    char de = '1';
+    char para = '2';
+    char auxiliar = '3';
+    
+    cout << (pow(2,n))-1 << "\n";
+    torre(n, de, auxiliar, para);
+    
+ 
+    return 0;
+}
