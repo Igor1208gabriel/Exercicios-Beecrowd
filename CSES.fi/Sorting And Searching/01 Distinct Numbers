@@ -1,0 +1,12 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+    int n; cin >> n;
+    set<int> sete;
+    while(n--){
+        int temp; cin >> temp;
+        sete.insert(temp);
+    }
+    cout << sete.size();
+}
