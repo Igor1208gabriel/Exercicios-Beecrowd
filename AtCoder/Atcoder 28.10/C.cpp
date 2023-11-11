@@ -1,31 +1,23 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
+
 using namespace std;
 
 int main(){
-    int n,m; cin >> n >> m;
-    vector<int> a(n);
-    for(int i = 0; i < n; i ++){
-        int temp; cin >> temp;
-        a[i] = temp;
-    }
-    sort(a.begin(), a.begin()+n);
-
-    vector<int> b(n);
+    int n, m; cin >> n >> m;
+    vector<int> vetor;
     for(int i = 0; i < n; i++){
-        int count = 0;
-
-        for(int j = 0; j < n; j++){
-
-            if(i <= a[j] and a[j] < i+m){
-                count++;
-            }
-        }
-        b[i] += count;
+        int temp; cin >> temp;
+        vetor.push_back(temp);
     }
+    sort(vetor.begin(), vetor.end());
+    vetor.push_back(9000000000000);
 
-    cout << *max_element(b.begin(), b.end());
+    int res = 0, r = 0;
 
-
+    for(int i = 0; i < n; i++){
+        while(vetor[r] < vetor[i]+m) 
+            r += 1;
+        res = max(res, r-1);
+    }
+    cout << res;
 }
