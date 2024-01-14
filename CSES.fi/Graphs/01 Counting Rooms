@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<string> vt;
+int m, n;
+
+void dfs(int estex, int estey){
+    //rejeita
+    if(estex >= m || estex < 0  || estey >= n || estey < 0 ) return;
+    if(vt[estex][estey] == '#' || vt[estex][estey] == '@') return;
+
+    //aceita
+    else{
+        vt[estex][estey] = '@';
+        dfs(estex+1, estey  );
+        dfs(estex-1, estey  );
+        dfs(  estex, estey+1);
+        dfs(  estex, estey-1);
+    }
+}
+
+int main(){
+    cin >> m >> n;
+    for(int i = 0; i < m; i++){
+        string tmp; cin >> tmp;
+        vt.push_back(tmp);
+    }
+
+    int ans = 0;
+    for(int i = 0; i < m; i++){
+        for(int f = 0; f < n; f++){
+            if(vt[i][f] == '.') {ans++; dfs(i,f);}
+        }
+    }
+
+    cout << ans << endl;
+
+}
